@@ -1,4 +1,4 @@
-    ![Local-CTI Logo](images/logo.png)
+![Local-CTI Logo](images/logo.png)
 
 # 🛡️ Local-CTI: Cyber Threat Intelligence Platform
 
