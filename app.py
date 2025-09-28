@@ -94,7 +94,7 @@ def main(llm_model_name: str, embedding_model_name: str, documents_path: str, nb
         sys.exit()
 
     st.image('images/logo.webp', use_column_width=True)
-    st.title("CTrag")
+    st.title("Local-CTI")
     if "selected_model" not in st.session_state:
         st.session_state.selected_model = "dolphin-mistral:latest"
     if "messages" not in st.session_state:

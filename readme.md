@@ -1,10 +1,10 @@
-# CTrag
+# Local-CTI
 
 <p align="center">
     <img src="images/logo.webp" width="400s">
 </p>
 
-CTrag is a cyber threat intelligence tool that uses local large language models (LLMs) and a vector database to answer your questions about cyber threats. It's built on top of Langchain, Ollama, Chroma, and PyPDF.
+Local-CTI is a cyber threat intelligence tool that uses local large language models (LLMs) and a vector database to answer your questions about cyber threats. It's built on top of Langchain, Ollama, Chroma, and PyPDF.
 
 ## Credits
 
@@ -38,7 +38,7 @@ https://github.com/amscotti/local-LLM-with-RAG
 
 ## Available commands
 
-Here are the available command line arguments and their default values for running the `CTrag` Streamlit application:
+Here are the available command line arguments and their default values for running the `Local-CTI` Streamlit application:
 ```css
 streamlit run app.py [-m MODEL] [-e EMBEDDING_MODEL] [-p PATH] [--nb-docs NB_DOCS]
 ```
@@ -51,7 +51,7 @@ Example usage:
 ```python
 streamlit run app.py -m "dolphin-mistral" -e "nomic-embed-text" -p "/path/to/documents" --nb-docs 10
 ```
-This command runs the `CTrag` Streamlit application using the `"dolphin-mistral"` LLM model, the `"nomic-embed-text"` embedding model, loads documents from the `"/path/to/documents"` directory, and retrieves `10` documents from the vector database.
+This command runs the `Local-CTI` Streamlit application using the `"dolphin-mistral"` LLM model, the `"nomic-embed-text"` embedding model, loads documents from the `"/path/to/documents"` directory, and retrieves `10` documents from the vector database.
 
 ## Source used to build the original vector database
 
