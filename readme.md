@@ -1,69 +1,170 @@
-# Local-CTI
+![Local-CTI Logo](images/logo.webp)
 
-<p align="center">
-    <img src="images/logo.webp" width="400s">
-</p>
+# 🛡️ Local-CTI: Cyber Threat Intelligence Platform
 
-Local-CTI is a cyber threat intelligence tool that uses local large language models (LLMs) and a vector database to answer your questions about cyber threats. It's built on top of Langchain, Ollama, Chroma, and PyPDF.
+**Transform your threat analysis with AI-powered intelligence retrieval**
 
-## Credits
+Local-CTI is an advanced threat intelligence platform that leverages the power of local large language models and vector databases to provide instant, contextual answers about cybersecurity threats. Built for security professionals who need rapid access to threat intelligence without relying on external APIs.
 
-The majority of the code for this project was adapted from the work of the first developer of local-LLM-with-RAG. The project was then adapted for the specific cyber threat intelligence use-case and a first vector database was built.
+---
 
-https://github.com/amscotti/local-LLM-with-RAG
+## ✨ Key Features
 
-## Requirements
+🔍 **Intelligent Query Processing** - Ask natural language questions about threats and get precise answers  
+📚 **Extensive Knowledge Base** - Pre-loaded with 2200+ threat intelligence reports  
+🔒 **Privacy-First** - Everything runs locally, your data never leaves your environment  
+⚡ **Fast Retrieval** - Optimized vector database for lightning-fast information access  
+🎯 **Contextual Responses** - AI provides relevant context from multiple sources  
 
-- [Ollama](https://ollama.ai/) version 0.1.26 or higher.
-  - You can download other models with `ollama pull [MODEL_NAME]` so that the chatbot can use them (default: dolphin-mistral)
+---
 
-## Setup
+## 🚀 Quick Start
 
-1. Clone this repository to your local machine using Git LFS to ensure you receive the already processed vector database with the 2200 reports. If you haven't installed Git LFS, please follow the instructions [here](https://git-lfs.github.com/).
-2. Create a Python virtual environment by running `python3 -m venv env`.
-3. Activate the virtual environment by running `source env/bin/activate` on Unix or MacOS, or `.\env\Scripts\activate` on Windows.
-4. Install the required Python packages by running `pip install -r requirements.txt`.
+### Prerequisites
 
-## Running the project
+Ensure you have the following installed:
+- **Python 3.8+** 
+- **Ollama** ([Download here](https://ollama.ai/))
+- **Git LFS** ([Installation guide](https://git-lfs.github.com/))
 
-**Note:** The first time you run the project, it will download the necessary models from Ollama for the LLM and embeddings. This is a one-time setup process and may take some time depending on your internet connection.
+### Installation Steps
 
-1. Ensure your virtual environment is activated.
-2. Run the streamlit GUI with `python streamlit run app.py`
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/R0h1tAnand/Local-CTI.git
+   cd Local-CTI
+   ```
 
-## Adding reports to the vector database
+2. **Set up Python environment**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-1. Put the PDFs in the `reports` folder
-2. Run the tool, it will automatically process the files and add them to the db.
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Available commands
+4. **Launch the application**
+   ```bash
+   streamlit run app.py
+   ```
 
-Here are the available command line arguments and their default values for running the `Local-CTI` Streamlit application:
-```css
-streamlit run app.py [-m MODEL] [-e EMBEDDING_MODEL] [-p PATH] [--nb-docs NB_DOCS]
+> **💡 First Run Note**: The initial startup will download required AI models (dolphin-mistral & nomic-embed-text). This may take 5-10 minutes depending on your internet connection.
+
+---
+
+## 📖 Usage Guide
+
+### Basic Usage
+Simply run the application and start asking questions about cybersecurity threats in natural language:
+- "What are the latest ransomware trends?"
+- "Tell me about APT28 tactics"
+- "How does CVE-2023-1234 work?"
+
+### Advanced Configuration
+
+Customize your experience with command-line options:
+
+```bash
+streamlit run app.py [OPTIONS]
 ```
-* `-m MODEL`, `--model MODEL`: The name of the LLM model to use. Default is `"dolphin-mistral"`.
-* `-e EMBEDDING_MODEL`, `--embedding_model EMBEDDING_MODEL`: The name of the embedding model to use. Default is `"nomic-embed-text"`.
-* `-p PATH`, `--path PATH`: The path to the directory containing documents to load. Default is `"reports"`.
-* `--nb-docs NB_DOCS`: The number of documents to retrieve from the vector database. Default is `8`.
 
-Example usage:
-```python
-streamlit run app.py -m "dolphin-mistral" -e "nomic-embed-text" -p "/path/to/documents" --nb-docs 10
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-m, --model` | LLM model for responses | `dolphin-mistral` |
+| `-e, --embedding_model` | Embedding model for search | `nomic-embed-text` |
+| `-p, --path` | Documents directory | `reports` |
+| `--nb-docs` | Max documents to retrieve | `8` |
+
+**Example with custom settings:**
+```bash
+streamlit run app.py -m "llama2" -e "all-minilm" -p "/custom/reports" --nb-docs 15
 ```
-This command runs the `Local-CTI` Streamlit application using the `"dolphin-mistral"` LLM model, the `"nomic-embed-text"` embedding model, loads documents from the `"/path/to/documents"` directory, and retrieves `10` documents from the vector database.
 
-## Source used to build the original vector database
+---
 
-- [VX-Underground archives](https://vx-underground.org/)
+## 📁 Project Structure
 
-## Technologies Used
+```
+Local-CTI/
+├── app.py                 # Main Streamlit application
+├── models.py             # Model management utilities
+├── document_loader.py    # Document processing logic
+├── requirements.txt      # Python dependencies
+├── db/                   # Vector database storage
+│   └── chroma.sqlite3   # Pre-built threat intel database
+├── images/              # Application assets
+│   └── logo.webp       # Project logo
+└── reports/             # Document storage (add your PDFs here)
+```
 
-- [Langchain](https://github.com/langchain/langchain): A Python library for working with Large Language Model
-- [Ollama](https://ollama.ai/): A platform for running Large Language models locally.
-- [Chroma](https://docs.trychroma.com/): A vector database for storing and retrieving embeddings.
-- [PyPDF](https://pypi.org/project/PyPDF2/): A Python library for reading and manipulating PDF files.
+---
 
-## License
+## 🔧 Customization
 
-This project is licensed under the terms of the MIT license.
+### Adding Your Own Intelligence Reports
+
+1. **Add PDF files** to the `reports/` directory
+2. **Restart the application** - new documents will be automatically processed and indexed
+3. **Query away** - your new intelligence is now searchable
+
+### Switching AI Models
+
+Use any Ollama-compatible model:
+```bash
+ollama pull codellama        # Download new model
+streamlit run app.py -m codellama  # Use it in Local-CTI
+```
+
+Popular models to try:
+- `mistral` - Balanced performance
+- `codellama` - Code-focused analysis
+- `neural-chat` - Conversational responses
+
+---
+
+## 🔬 Technical Architecture
+
+**Core Technologies:**
+- **🦜 LangChain** - LLM orchestration and document processing
+- **🦙 Ollama** - Local model inference engine  
+- **🎨 ChromaDB** - High-performance vector database
+- **📄 PyPDF** - PDF document parsing
+- **🎈 Streamlit** - Interactive web interface
+
+**Data Flow:**
+1. Documents → PDF Parser → Text Chunks
+2. Text Chunks → Embedding Model → Vector Database  
+3. User Query → Embedding → Similarity Search
+4. Retrieved Context + Query → LLM → Response
+
+---
+
+## 🏆 Credits & Acknowledgments
+
+This project builds upon the excellent foundation laid by [@amscotti](https://github.com/amscotti) in the [local-LLM-with-RAG](https://github.com/amscotti/local-LLM-with-RAG) project. We've extended it specifically for cybersecurity threat intelligence use cases.
+
+**Data Sources:**
+- Primary intelligence database sourced from [VX-Underground](https://vx-underground.org/)
+- Community-contributed threat reports and analysis
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Whether it's bug fixes, feature additions, or intelligence report contributions, please feel free to:
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
+
+---
+
+**Built with ❤️ for the cybersecurity community**
